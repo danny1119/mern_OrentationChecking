@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb://duy:duy183462@cluster0-x898x.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "sl_myJwtSecret"
+}
