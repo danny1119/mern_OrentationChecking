@@ -1,7 +1,7 @@
 {
-  "name": "mern_typescript",
+  "name": "mern_orentation_checking",
   "version": "1.0.0",
-  "description": "MERN Stack with ES6 and Typescript Boilerplate",
+  "description": "MERN Stack with ES6 and help checking student in orentation event",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
@@ -11,18 +11,23 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "author": "Brad Traversy",
+  "author": "DNIdea",
   "license": "MIT",
   "dependencies": {
+    "async": "^3.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^3.6.0",
     "config": "^3.0.1",
     "cors": "^2.8.5",
+    "csv-parser": "^2.3.2",
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
+    "express-fileupload": "^1.1.7-alpha.3",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.1.6"
+    "mongoose": "^5.1.6",
+    "multer": "^1.4.2",
+    "node-cmd": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

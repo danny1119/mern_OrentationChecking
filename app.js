@@ -8,13 +8,16 @@ import config from './config';
 
 // routes
 import authRoutes from './routes/api/auth';
-import itemRoutes from './routes/api/items';
 import userRoutes from './routes/api/users';
 import studentRoutes from './routes/api/students';
 
 const { MONGO_URI, MONGO_DB_NAME } = config;
 
 const app = express();
+
+// // using uploaded file
+// var fileupload = require('express-fileupload');
+// app.use(fileupload());
 
 // CORS Middleware
 app.use(cors());
@@ -30,7 +33,6 @@ mongoose.connect(MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true  } 
 app.use(express.json());
 
 // Use Routes
-app.use('/api/items', itemRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
