@@ -16,7 +16,6 @@ export default function Table() {
       {
         title: 'Birth Year',
         field: 'birthYear',
-        type: 'numeric'
       },
       {
         title: 'Attending',

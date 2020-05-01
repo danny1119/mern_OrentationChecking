@@ -43,9 +43,14 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
+  footer: {
+    backgroundColor: '#18181A',
+    color: 'white',
+    padding: theme.spacing(5),
+  },
 }));
 
-const cards = [1, 2, 3];
+const cards = [1,2,3];
 
 const App = () => {
   const classes = useStyles();
@@ -95,7 +100,7 @@ const App = () => {
                       GSU Event
                     </Typography>
                     <Typography>
-                      This is the event of GSU. You can check-in student in here.
+                      New Student Orientation is required for new freshman and strongly encouraged for new transfer students. 
                     </Typography>
                   </CardContent>
                   <CardActions>
@@ -113,7 +118,11 @@ const App = () => {
           { showResults ? <Table /> : null }
         </Container>
       </main>
-    
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          <a href="https://www.youtube.com/">Youtube link</a>
+        </Typography>
+      </footer>
     </React.Fragment>
   );
 }
