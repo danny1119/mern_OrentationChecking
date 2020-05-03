@@ -1,0 +1,6 @@
+﻿panther_id,first_name,last_name,department,level,campus,degree,email,college,year,check_in
+904,An,Nguyen,CS,Undergrad,atl,phd,abc@gmail.com,gsu,2020,1
+905,Binh,Trinh,CS,Undergrad,dunwoody,master,abc@gmail.com,gsu,2020,1
+907,Chi,Mai,CS,Undergrad,newton,bachelor,abc@gmail.com,gsu,2020,1
+906,Danh,Tran,CS,Undergrad,clarkston,master,abc@gmail.com,gsu,2020,0
+908,Yen,Vo,CS,Undergrad,alphareta,master,abc@gmail.com,gsu,2020,0

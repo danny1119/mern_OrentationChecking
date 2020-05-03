@@ -65,7 +65,7 @@ router.post('/import', async (req, res) => {
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'fileupload/')
+        cb(null, 'client/src/fileupload/')
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname)
@@ -108,11 +108,12 @@ router.post('/csvimport',multerupload.any(), function (req, res){
               .on('end', () => {
                 console.log('CSV file successfully processed');
               });
+
             if (err) {
               console.log("err ocurred", err);
               }
             else {
-              callback(null, 'done');
+              res.json({ fileName: file.originalname, filePath: `client/src/fileupload/${file.originalname}` });
             }
             });
         }
@@ -130,7 +131,7 @@ router.post('/csvimport',multerupload.any(), function (req, res){
        res.send({
                  "code":"200",
                  "success":"files printed successfully"
-                 })
+                 });
        // cmd.run('rm -rf ./fileupload/*');
      }
      });

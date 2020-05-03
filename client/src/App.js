@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import School from '@material-ui/icons/School';
@@ -56,6 +56,7 @@ const App = () => {
   const classes = useStyles();
   const [showResults, setShowResults] = React.useState(false)
   const onClick = () => setShowResults(true)
+
   return (
     <React.Fragment>
       <CssBaseline />

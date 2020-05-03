@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import Message from './Message';
 import Progress from './Progress';
 import axios from 'axios';
 
@@ -7,7 +6,6 @@ const FileUpload = () => {
   const [file, setFile] = useState( '' );
   const [filename, setFilename] = useState( 'Choose File' );
   const [uploadedFile, setUploadedFile] = useState( {} );
-  const [message, setMessage] = useState( '' );
   const [uploadPercentage, setUploadPercentage] = useState( 0 );
 
   const onChange = e => {
@@ -36,6 +34,10 @@ const FileUpload = () => {
         fileName,
         filePath
       } );
+
+      console.log(uploadedFile.fileName);
+      console.log(uploadedFile.filePath);
+
     } catch (err) {
       console.log(err);
     }
@@ -43,7 +45,6 @@ const FileUpload = () => {
 
   return (
   <Fragment>
-    { message ? <Message msg={ message } /> : null }
     <form onSubmit={ onSubmit }>
       <div className="custom-file">
         <input type="file"
