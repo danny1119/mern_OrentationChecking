@@ -1,12 +1,23 @@
-import React, {useEffect, useState} from 'react';
-import { csv } from 'd3';
+import React, { useState} from 'react';
 import MaterialTable from 'material-table';
-import CSVReader from 'react-csv-reader'
-
-import * as d3 from 'd3';
-import file from './../fileupload/test.csv';
 
 export default function Table() {
+  // const obj = {}
+  // d3.csv(file)
+  //   .then(el => {
+  //       obj.panther_id= el[0].panther_id;
+  //         obj.first_name= el[0].first_name;
+  //         obj.last_name= el[0].last_name;
+  //         obj.department= el[0].department;
+  //         obj.level= el[0].level;
+  //         obj.campus= el[0].campus;
+  //         obj.degree= el[0].degree;
+  //         obj.email= el[0].email;
+  //         obj.college= el[0].college;
+  //         obj.year= el[0].year;
+  //         obj.check_in= el[0].check_in;
+  //   })
+
   const [state, setState] = useState( {
     columns: [
       {
@@ -54,6 +65,34 @@ export default function Table() {
         field: 'check_in',
       },
     ],
+    //     d3.csv(file)
+    // .then(el => {
+    //       const panther_id= el[0].panther_id;
+    //       const first_name= el[0].first_name;
+    //       const last_name= el[0].last_name;
+    //       const department= el[0].department;
+    //       const level= el[0].level;
+    //       const campus= el[0].campus;
+    //       const degree= el[0].degree;
+    //       const email= el[0].email;
+    //       const college= el[0].college;
+    //       const year= el[0].year;
+    //       const check_in= el[0].check_in;
+    // });
+    //   panther_id: panther_id,
+    //     first_name: first_name,
+    //     last_name: last_name,
+    //     department: department,
+    //     level: level,
+    //     campus: campus,
+    //     degree: degree,
+    //     email: email,
+    //     college: college,
+    //     year: year,
+    //     check_in: check_in,
+
+
+
     data: [
       {
         panther_id: '900915662',
@@ -114,6 +153,77 @@ export default function Table() {
     ],
   } );
 
+
+// const obj = {};
+// d3.csv(file)
+//     .then(el => {
+//        obj.panther_id= el[0].panther_id;
+//           obj.first_name= el[0].first_name;
+//           obj.last_name= el[0].last_name;
+//           obj.department= el[0].department;
+//           obj.level= el[0].level;
+//           obj.campus= el[0].campus;
+//           obj.degree= el[0].degree;
+//           obj.email= el[0].email;
+//           obj.college= el[0].college;
+//           obj.year= el[0].year;
+//           obj.check_in= el[0].check_in;
+    
+//     })
+
+// useEffect(() => {
+//   setState({
+//     columns: [
+//       {
+//         title: 'PantherId',
+//         field: 'panther_id'
+//       },
+//       {
+//         title: 'First Name',
+//         field: 'first_name'
+//       },
+//       {
+//         title: 'Last Name',
+//         field: 'last_name',
+//       },
+//       {
+//         title: 'Department',
+//         field: 'department',
+//       },
+//       {
+//         title: 'Level',
+//         field: 'level'
+//       },
+//       {
+//         title: 'Campus',
+//         field: 'campus',
+//       },
+//       {
+//         title: 'Degree',
+//         field: 'degree',
+//       },
+//       {
+//         title: 'Email',
+//         field: 'email',
+//       },
+//       {
+//         title: 'College',
+//         field: 'college',
+//       },
+//       {
+//         title: 'Year',
+//         field: 'year',
+//       },
+//       {
+//         title: 'Check in ',
+//         field: 'check_in',
+//       },
+//     ],
+//     data: obj
+//   })
+// },[])
+
+
   // d3.csv(data, data => {
   //   setState ({
   //     data.forEach(element => {
@@ -131,7 +241,6 @@ export default function Table() {
   //     })
   //   })
   // });
-   
   return (
   <MaterialTable title="Student table"
                  columns={ state.columns }
