@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import School from '@material-ui/icons/School';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +11,9 @@ import Container from '@material-ui/core/Container';
 import CardEvent from './component/Card';
 import Content from './component/Content';
 import Table from './component/Table';
+
+import * as d3 from 'd3';
+import file from './fileupload/test.csv';
 
 const useStyles = makeStyles( (theme) => ({
   icon: {
@@ -37,13 +40,128 @@ const useStyles = makeStyles( (theme) => ({
 
 const App = () => {
   const classes = useStyles();
+  const [state, setState] = useState( {
+    data: [
+    {
+      panther_id: '900915662',
+      first_name: 'Ngoc',
+      last_name: 'Truong',
+      department: 'CS',
+      level: 'PHD',
+      campus: 'ATL',
+      degree: 'Bachelor',
+      email: 'ntruong@gmail.com',
+      college: 'GSU',
+      year: '2',
+      check_in: 1,
+
+    },
+    {
+      panther_id: '900915663',
+      first_name: 'Binh',
+      last_name: 'Nguyen',
+      department: 'CS',
+      level: 'Bachelor',
+      campus: 'ATL',
+      degree: 'Bachelor',
+      email: 'abc@gmail.com',
+      college: 'Dunwoody',
+      year: '3',
+      check_in: 1,
+
+    },
+    {
+      panther_id: '900915664',
+      first_name: 'An',
+      last_name: 'Nguyen',
+      department: 'Chemistry',
+      level: 'Master',
+      campus: 'ATL',
+      degree: 'Bachelor',
+      email: 'ntta239@gmail.com',
+      college: 'GSU',
+      year: '4',
+      check_in: 1,
+
+    },
+    {
+      panther_id: '900915665',
+      first_name: 'Tu',
+      last_name: 'Le',
+      department: 'Physics',
+      level: 'Master',
+      campus: 'ATL',
+      degree: 'Bachelor',
+      email: 'tu222@gmail.com',
+      college: 'GSU',
+      year: '3',
+      check_in: 0,
+
+    },
+  ],
+    columns:[
+    {
+      title: 'PantherId',
+      field: 'panther_id'
+    },
+    {
+      title: 'First Name',
+      field: 'first_name'
+    },
+    {
+      title: 'Last Name',
+      field: 'last_name',
+    },
+    {
+      title: 'Department',
+      field: 'department',
+    },
+    {
+      title: 'Level',
+      field: 'level'
+    },
+    {
+      title: 'Campus',
+      field: 'campus',
+    },
+    {
+      title: 'Degree',
+      field: 'degree',
+    },
+    {
+      title: 'Email',
+      field: 'email',
+    },
+    {
+      title: 'College',
+      field: 'college',
+    },
+    {
+      title: 'Year',
+      field: 'year',
+    },
+    {
+      title: 'Check in ',
+      field: 'check_in',
+    },
+  ]
+});
+
+ 
   const [showResults, setShowResults] = React.useState( false )
-  // const onClick = () => setShowResults( true )
-    
+  
   function toggle() {
-    setShowResults(wasShowed => !wasShowed);
+    setShowResults( wasShowed => !wasShowed );
   }
 
+  useEffect(async () => {
+    const res = await d3.csv(file)
+     setState((prev) =>  ({
+      ...prev,
+      data: [...res]
+     }));
+  }, []);
+    
   return (
   <React.Fragment>
     <CssBaseline />
@@ -60,21 +178,24 @@ const App = () => {
     <main>
       <div className={ classes.heroContent }>
         <Container maxWidth="sm">
-          <Content/>
+          <Content />
         </Container>
       </div>
-      <Container className={classes.cardGrid} maxWidth="md">
-        <Grid container spacing={10}>
-         <Grid sm={12} md={6}>
-         <CardEvent onClick = {toggle}/>
-        </Grid>
-        <Grid sm={12} md={6}>
-         <CardEvent onClick = {toggle}/>
-        </Grid>
+      <Container className={ classes.cardGrid } maxWidth="md">
+        <Grid container spacing={ 10 }>
+          <Grid sm={ 12 } md={ 6 }>
+            <CardEvent onClick={ toggle } />
+          </Grid>
+          <Grid sm={ 12 } md={ 6 }>
+            <CardEvent onClick={ toggle } />
+          </Grid>
         </Grid>
       </Container>
-        { showResults && <Table /> }
-        
+      { showResults && 
+        <Table 
+          columns = {state.columns}
+          data = {state.data}
+        /> }
     </main>
     <footer className={ classes.footer }>
       <Typography variant="h6"
