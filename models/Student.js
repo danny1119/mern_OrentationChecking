@@ -4,43 +4,43 @@ import { Schema, model} from 'mongoose';
 const StudentSchema = new Schema({
     panther_id: {
         type: String,
-        required: true
+        // required: true
     },
     first_name: {
         type: String,
-        required: true
+        // required: true
     },
     last_name: {
         type: String,
-        required: true
+        // required: true
     },
     department: {
         type: String,
-        required: true
+        // required: true
     },
     level: {
         type: String,
-        required: true
+        // required: true
     },
     campus: {
         type: String,
-        required: true
+        // required: true
     },
     degree: {
         type: String,
-        required: true
+        // required: true
     },
     email: {
         type: String,
-        required: true
+        // required: true
     },
     college: {
         type: String,
-        required: true
+        // required: true
     },
     year: {
         type: String,
-        required: true
+        // required: true
     },
     check_in: {
         type: Boolean,

@@ -1,4 +1,4 @@
-import React ,{ useMemo, useState, useEffect } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import School from '@material-ui/icons/School';
@@ -12,7 +12,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 
 import FileUpload from './component/FileUpload';
 import Table from './component/Table';
@@ -47,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#18181A',
     color: 'white',
     padding: theme.spacing(5),
+    height: '40px'
   },
 }));
 
@@ -79,7 +79,6 @@ const App = () => {
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
-                  <FileUpload />
                 </Grid>
               </Grid>
             </div>
@@ -104,6 +103,8 @@ const App = () => {
                     </Typography>
                   </CardContent>
                   <CardActions>
+                    <FileUpload />
+
                     <Button size="small" color="primary" onClick={onClick}>
                       View
                     </Button>

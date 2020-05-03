@@ -66,6 +66,9 @@ export default function Table() {
   <MaterialTable title="Student table"
                  columns={ state.columns }
                  data={ state.data }
+                 options={{
+                    exportButton: true
+                 }}
                  editable={ { 
                  onRowUpdate: (newData, oldData) =>
                  new Promise((resolve) => {

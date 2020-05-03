@@ -9,6 +9,22 @@ var cmd=require('node-cmd');
 const router = Router();
 
 
+
+/**
+ * @route   POST api/students/
+ * @desc    get a student
+ * @access  Private
+ */
+router.get('/', async (req, res) => {
+  try {
+    const students = await Student.find();
+    if (!students) throw Error('No students exist');
+    res.json(students);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+});
+
 /**
  * @route   POST api/students/import
  * @desc    import a student
@@ -47,8 +63,17 @@ router.post('/import', async (req, res) => {
  * @access  Private
  */
 var multer = require('multer');
-var multerupload = multer({ dest: 'fileupload/' });
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'fileupload/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+  }
+})
 
+
+var multerupload = multer({ storage: storage });
 router.post('/csvimport',multerupload.any(), function (req, res){
 
   var filesArray = req.files;
@@ -58,7 +83,7 @@ router.post('/csvimport',multerupload.any(), function (req, res){
       async.waterfall([
         function (callback) {
           fs.readFile(file.path, (err, data) => {
-            console.log(file.path);
+            console.log('here', file.path, "+ " , file);
             fs.createReadStream(file.path)
               .pipe(csv())
               .on('data',async (row) => {
@@ -106,7 +131,7 @@ router.post('/csvimport',multerupload.any(), function (req, res){
                  "code":"200",
                  "success":"files printed successfully"
                  })
-       cmd.run('rm -rf ./fileupload/*');
+       // cmd.run('rm -rf ./fileupload/*');
      }
      });
 });

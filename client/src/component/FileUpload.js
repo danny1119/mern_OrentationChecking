@@ -21,7 +21,7 @@ const FileUpload = () => {
     formData.append( 'file', file );
 
     try {
-      const res = await axios.post( '/upload', formData, {
+      const res = await axios.post( 'http://localhost:5000/api/students/csvimport', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -36,13 +36,8 @@ const FileUpload = () => {
         fileName,
         filePath
       } );
-      setMessage( 'File uploaded' );
     } catch (err) {
-      if ( err.response.status === 500 ) {
-        setMessage( 'There was a problem with he server' );
-      } else {
-        setMessage( err.response.data.msg );
-      }
+      console.log(err);
     }
   }
 
@@ -50,12 +45,12 @@ const FileUpload = () => {
   <Fragment>
     { message ? <Message msg={ message } /> : null }
     <form onSubmit={ onSubmit }>
-      <div class="custom-file">
+      <div className="custom-file">
         <input type="file"
-               class="custom-file-input"
+               className="custom-file-input"
                id="customFile"
                onChange={ onChange } />
-        <label class="custom-file-label" for="customFile">
+        <label className="custom-file-label" htmlFor="customFile">
           Choose file
         </label>
         <label className='custom-file-label' htmlFor='customFile'>
