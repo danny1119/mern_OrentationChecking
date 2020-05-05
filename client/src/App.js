@@ -146,19 +146,12 @@ const App = () => {
       </div>
       <Container className={ classes.cardGrid } maxWidth="md">
         <Grid container spacing={ 10 }>
-          <Grid sm={ 12 } md={ 6 }>
+          <Grid md={ 12 }>
             <CardEvent 
             onClick={ toggle } 
             img ="https://orientation.gsu.edu/files/2019/02/orientation-home-bg-6.jpg"
             text = "Students attending orientation receive academic advisement from representatives of the University Advisement Center. Academic advisement gives students a chance to learn about the curriculum for their degree program and how to plan their first semester schedule."
             />
-          </Grid>
-          <Grid sm={ 12 } md={ 6 }>
-            <CardEvent 
-              onClick={ toggle } 
-              img ="https://universityunions.utexas.edu/sites/default/files/styles/utexas_hero_photo_image_mobile/public/flex-content-areas/Unknown_0.jpeg?itok=EF1tC3m0"
-              text = "Campus Events + Entertainment, is the premier student programming organization on campus. With over 120 events annually, there is something for everyone within E+E! We offer a diverse calendar of film screenings, invited speakers, cultural events, and more!"
-              />
           </Grid>
         </Grid>
       </Container>

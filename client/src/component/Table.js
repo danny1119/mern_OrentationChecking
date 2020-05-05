@@ -31,7 +31,7 @@ export default function Table( props ) {
                    data={ gridData.data }
                    options={ { exportButton: true } }
                    editable={ { onRowUpdate: onRowUpdate } } 
-                   
+
       //              components={{
       //     Action: () => (
 
