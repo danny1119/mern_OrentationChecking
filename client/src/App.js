@@ -3,7 +3,9 @@ import AppBar from '@material-ui/core/AppBar';
 import School from '@material-ui/icons/School';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
+import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -11,6 +13,8 @@ import useForceUpdate from 'use-force-update';
 import CardEvent from './component/Card';
 import Content from './component/Content';
 import Table from './component/Table';
+import TextField from '@material-ui/core/TextField';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios';
 
 
@@ -40,83 +44,132 @@ const useStyles = makeStyles( (theme) => ({
   },
 }) );
 
+
+
+
+
 const App = () => {
   const classes = useStyles();
-  
+  const [name, setName] = useState( '' );
+  let tmp = "";
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+  }
+ 
+
+
+  const DisplayForm = () => <form onSubmit={ handleSubmit }>
+                              <Typography variant="h6"
+                                          color="inherit"
+                                          noWrap>
+                                Event description
+                              </Typography>
+                              <br />
+
+                                         <input 
+
+                                         autoFocus
+                                         type="text"
+                                         value={ name }
+                                         onChange={ e => setName( e.target.value ) }/>
+                              <br />
+                              <br />
+                              <Button variant="contained"
+                                      color="primary"
+                                      className={ classes.button }
+                                      endIcon={ <Icon>
+                                                  send
+                                                </Icon> }
+                                      onClick={ () => setCount( count + 1 ) }>
+                                Send
+                              </Button>
+                              <br />
+                              { Array( count ).fill( <AddedElement /> ) }
+                            </form>
+
+                             const AddedElement = () => 
+      <CardEvent img="https://orientation.gsu.edu/files/2019/02/orientation-home-bg-3.jpg"
+                                        text={ name }
+                                        onClick={ toggle } />
+
   const [state, setState] = useState( {
     data: [ {} ],
-    columns:[
-    {
-      title: 'PantherId',
-      field: 'panther_id'
-    },
-    {
-      title: 'First Name',
-      field: 'first_name'
-    },
-    {
-      title: 'Last Name',
-      field: 'last_name',
-    },
-    {
-      title: 'Department',
-      field: 'department',
-    },
-    {
-      title: 'Level',
-      field: 'level'
-    },
-    {
-      title: 'Campus',
-      field: 'campus',
-    },
-    {
-      title: 'Degree',
-      field: 'degree',
-    },
-    {
-      title: 'Email',
-      field: 'email',
-    },
-    {
-      title: 'College',
-      field: 'college',
-    },
-    {
-      title: 'Year',
-      field: 'year',
-    },
-    {
-      title: 'Check in ',
-      field: 'check_in',
-    },
-  ]
-});
-  
+    columns: [
+      {
+        title: 'PantherId',
+        field: 'panther_id'
+      },
+      {
+        title: 'First Name',
+        field: 'first_name'
+      },
+      {
+        title: 'Last Name',
+        field: 'last_name',
+      },
+      {
+        title: 'Department',
+        field: 'department',
+      },
+      {
+        title: 'Level',
+        field: 'level'
+      },
+      {
+        title: 'Campus',
+        field: 'campus',
+      },
+      {
+        title: 'Degree',
+        field: 'degree',
+      },
+      {
+        title: 'Email',
+        field: 'email',
+      },
+      {
+        title: 'College',
+        field: 'college',
+      },
+      {
+        title: 'Year',
+        field: 'year',
+      },
+      {
+        title: 'Check in ',
+        field: 'check_in',
+      },
+    ]
+  } );
+
   const forceUpdate = useForceUpdate();
- 
+
   const [showResults, setShowResults] = React.useState( false )
-  
+
   async function toggle() {
-  const res = await axios.get('http://localhost:5000/api/students')
-    console.log(res.data)
-     setState((prev) =>  ({
+    const res = await axios.get( 'http://localhost:5000/api/students' )
+    console.log( res.data )
+    setState( (prev) => ({
       ...prev,
-      data: [...res.data]
-     }));
+      data: [ ...res.data ]
+    }) );
     setShowResults( wasShowed => !wasShowed );
   }
-  
- // function changeStatus(id) {
- //   setState((prev) => ({
- //      ...prev,
- //      data: state.data.map(el => (el.panther_id === id ? {
- //        ...el, first_name : 'asdda'
- //      } : {...el, check_in: !el.check_in}))
- //    }))
- //    forceUpdate();
- //    toggle();
- //  }
+
+  const [count, setCount] = useState( 1 )
+  const [anotherCount, anotherSetCount] = useState( 0 )
+
+  // function changeStatus(id) {
+  //   setState((prev) => ({
+  //      ...prev,
+  //      data: state.data.map(el => (el.panther_id === id ? {
+  //        ...el, first_name : 'asdda'
+  //      } : {...el, check_in: !el.check_in}))
+  //    }))
+  //    forceUpdate();
+  //    toggle();
+  //  }
 
   // useEffect(async () => {
   //   const res = await axios.get('http://localhost:5000/api/students')
@@ -127,8 +180,6 @@ const App = () => {
   //    }));
   // }, []);
 
-  console.log(state.data[0])
-    
   return (
   <React.Fragment>
     <CssBaseline />
@@ -151,20 +202,29 @@ const App = () => {
       <Container className={ classes.cardGrid } maxWidth="md">
         <Grid container spacing={ 10 }>
           <Grid md={ 12 }>
-            <CardEvent 
-            onClick={ toggle } 
-            img ="https://orientation.gsu.edu/files/2019/02/orientation-home-bg-6.jpg"
-            text = "Students attending orientation receive academic advisement from representatives of the University Advisement Center. Academic advisement gives students a chance to learn about the curriculum for their degree program and how to plan their first semester schedule."
-            />
+            <Button variant="contained"
+                    color="default"
+                    startIcon={ <CloudUploadIcon /> }
+                    onClick={ () => {
+                                anotherSetCount( anotherCount + 1 )
+                                setCount( count - 1 )
+                              } }>
+              Upload
+            </Button>
+            <br />
+            <br />
+            <CardEvent onClick={ toggle }
+                       img="https://orientation.gsu.edu/files/2019/02/orientation-home-bg-6.jpg"
+                       text="Students attending orientation receive academic advisement from representatives of the University Advisement Center. Academic advisement gives students a chance to learn about the curriculum for their degree program and how to plan their first semester schedule." />
+            { Array( anotherCount ).fill( <DisplayForm /> ) }
           </Grid>
         </Grid>
       </Container>
       { showResults && 
-        <Table 
-          columns = {state.columns}
-          data = {state.data}
-          // onStatusChange = {changeStatus}
-        /> }
+                                    <Table 
+                                      columns = { state.columns }
+                                      data = { state.data }
+                                    /> }
     </main>
     <footer className={ classes.footer }>
       <Typography variant="h6"

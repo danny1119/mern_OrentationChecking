@@ -32,20 +32,6 @@ export default function Table( props ) {
                    options={ { exportButton: true } }
                    editable={ { onRowUpdate: onRowUpdate } } 
 
-      //              components={{
-      //     Action: () => (
-
-      //     <Button
-      //       onClick={props.onStatusChange}
-      //       color="primary"
-      //       variant="contained"
-      //       style={{textTransform: 'none'}}
-      //       size="small"
-      //     >
-      //       Check
-      //     </Button>
-      //   ),
-      // }}
     />
   );
 }
