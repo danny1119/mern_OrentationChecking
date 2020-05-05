@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import Progress from './Progress';
+import Container from '@material-ui/core/Container';
 import axios from 'axios';
 
 const FileUpload = () => {
@@ -35,36 +36,39 @@ const FileUpload = () => {
         filePath
       } );
 
-      console.log(uploadedFile.fileName);
-      console.log(uploadedFile.filePath);
+      console.log(fileName);
+      console.log(filePath);
 
     } catch (err) {
       console.log(err);
     }
   }
 
+
   return (
   <Fragment>
-    <form onSubmit={ onSubmit }>
-      <div className="custom-file">
-        <input type="file"
-               className="custom-file-input"
-               id="customFile"
-               onChange={ onChange } />
-        <label className="custom-file-label" htmlFor="customFile">
-          Choose file
-        </label>
-        <label className='custom-file-label' htmlFor='customFile'>
-            {filename}
-        </label>
-      </div>
-      <br/>
-      <br/>
-      <Progress percentage={ uploadPercentage } />
-      <input type="submit"
-             value="Upload"
-             className="btn btn-primary btn-block mt-4" />
-    </form>
+    <Container>
+      <form onSubmit={ onSubmit }>
+        <div className="custom-file">
+          <input type="file"
+                 className="custom-file-input"
+                 id="customFile"
+                 onChange={ onChange } />
+          <label className="custom-file-label" htmlFor="customFile">
+            Choose file
+          </label>
+          <label className='custom-file-label' htmlFor='customFile'>
+              {filename}
+          </label>
+        </div>
+        <br/>
+        <br/>
+        <Progress percentage={ uploadPercentage } />
+        <input type="submit"
+               value="Upload"
+               className="btn btn-primary btn-block mt-4" />
+      </form>
+    </Container>
   </Fragment>
   );
 };

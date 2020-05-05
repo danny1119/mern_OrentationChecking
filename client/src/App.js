@@ -7,13 +7,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
+import useForceUpdate from 'use-force-update';
 import CardEvent from './component/Card';
 import Content from './component/Content';
 import Table from './component/Table';
+import axios from 'axios';
+
 
 import * as d3 from 'd3';
-import file from './fileupload/test.csv';
+// import file from './fileupload/test.csv';
 
 const useStyles = makeStyles( (theme) => ({
   icon: {
@@ -40,65 +42,9 @@ const useStyles = makeStyles( (theme) => ({
 
 const App = () => {
   const classes = useStyles();
+  
   const [state, setState] = useState( {
-    data: [
-    {
-      panther_id: '900915662',
-      first_name: 'Ngoc',
-      last_name: 'Truong',
-      department: 'CS',
-      level: 'PHD',
-      campus: 'ATL',
-      degree: 'Bachelor',
-      email: 'ntruong@gmail.com',
-      college: 'GSU',
-      year: '2',
-      check_in: 1,
-
-    },
-    {
-      panther_id: '900915663',
-      first_name: 'Binh',
-      last_name: 'Nguyen',
-      department: 'CS',
-      level: 'Bachelor',
-      campus: 'ATL',
-      degree: 'Bachelor',
-      email: 'abc@gmail.com',
-      college: 'Dunwoody',
-      year: '3',
-      check_in: 1,
-
-    },
-    {
-      panther_id: '900915664',
-      first_name: 'An',
-      last_name: 'Nguyen',
-      department: 'Chemistry',
-      level: 'Master',
-      campus: 'ATL',
-      degree: 'Bachelor',
-      email: 'ntta239@gmail.com',
-      college: 'GSU',
-      year: '4',
-      check_in: 1,
-
-    },
-    {
-      panther_id: '900915665',
-      first_name: 'Tu',
-      last_name: 'Le',
-      department: 'Physics',
-      level: 'Master',
-      campus: 'ATL',
-      degree: 'Bachelor',
-      email: 'tu222@gmail.com',
-      college: 'GSU',
-      year: '3',
-      check_in: 0,
-
-    },
-  ],
+    data: [ {} ],
     columns:[
     {
       title: 'PantherId',
@@ -146,7 +92,8 @@ const App = () => {
     },
   ]
 });
-
+  
+  const forceUpdate = useForceUpdate();
  
   const [showResults, setShowResults] = React.useState( false )
   
@@ -154,13 +101,29 @@ const App = () => {
     setShowResults( wasShowed => !wasShowed );
   }
 
+  
+  
+ // function changeStatus(id) {
+ //   setState((prev) => ({
+ //      ...prev,
+ //      data: state.data.map(el => (el.panther_id === id ? {
+ //        ...el, first_name : 'asdda'
+ //      } : {...el, check_in: !el.check_in}))
+ //    }))
+ //    forceUpdate();
+ //    toggle();
+ //  }
+
   useEffect(async () => {
-    const res = await d3.csv(file)
+    const res = await axios.get('http://localhost:5000/api/students')
+    console.log(res.data)
      setState((prev) =>  ({
       ...prev,
-      data: [...res]
+      data: [...res.data]
      }));
   }, []);
+
+  console.log(state.data[0])
     
   return (
   <React.Fragment>
@@ -184,10 +147,18 @@ const App = () => {
       <Container className={ classes.cardGrid } maxWidth="md">
         <Grid container spacing={ 10 }>
           <Grid sm={ 12 } md={ 6 }>
-            <CardEvent onClick={ toggle } />
+            <CardEvent 
+            onClick={ toggle } 
+            img ="https://orientation.gsu.edu/files/2019/02/orientation-home-bg-6.jpg"
+            text = "Students attending orientation receive academic advisement from representatives of the University Advisement Center. Academic advisement gives students a chance to learn about the curriculum for their degree program and how to plan their first semester schedule."
+            />
           </Grid>
           <Grid sm={ 12 } md={ 6 }>
-            <CardEvent onClick={ toggle } />
+            <CardEvent 
+              onClick={ toggle } 
+              img ="https://universityunions.utexas.edu/sites/default/files/styles/utexas_hero_photo_image_mobile/public/flex-content-areas/Unknown_0.jpeg?itok=EF1tC3m0"
+              text = "Campus Events + Entertainment, is the premier student programming organization on campus. With over 120 events annually, there is something for everyone within E+E! We offer a diverse calendar of film screenings, invited speakers, cultural events, and more!"
+              />
           </Grid>
         </Grid>
       </Container>
@@ -195,6 +166,7 @@ const App = () => {
         <Table 
           columns = {state.columns}
           data = {state.data}
+          // onStatusChange = {changeStatus}
         /> }
     </main>
     <footer className={ classes.footer }>

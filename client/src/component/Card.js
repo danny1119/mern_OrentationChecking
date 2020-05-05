@@ -35,7 +35,7 @@ export default function CardEvent(props) {
     <Container>
         <Card className={ classes.card }>
           <CardMedia className={ classes.cardMedia }
-                     image="https://orientation.gsu.edu/files/2019/02/orientation-home-bg-6.jpg"
+                     image={props.img}
                      title="Gsu students" />
           <CardContent className={ classes.cardContent }>
             <Typography gutterBottom
@@ -44,7 +44,7 @@ export default function CardEvent(props) {
               GSU Event
             </Typography>
             <Typography>
-              New Student Orientation is required for new freshman and strongly encouraged for new transfer students.
+              {props.text}
             </Typography>
           </CardContent>
           <CardActions>

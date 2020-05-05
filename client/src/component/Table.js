@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table';
+import Button from '@material-ui/core/Button';
+
 
 export default function Table( props ) {
   const [gridData, setGridData] = useState( {
@@ -24,10 +26,26 @@ export default function Table( props ) {
     } );
   } );
   return (
-  <MaterialTable title="Student table"
-                 columns={ gridData.columns }
-                 data={ gridData.data }
-                 options={ { exportButton: true } }
-                 editable={ { onRowUpdate: onRowUpdate } } />
+    <MaterialTable title="Student check-list"
+                   columns={ gridData.columns }
+                   data={ gridData.data }
+                   options={ { exportButton: true } }
+                   editable={ { onRowUpdate: onRowUpdate } } 
+                   
+      //              components={{
+      //     Action: () => (
+
+      //     <Button
+      //       onClick={props.onStatusChange}
+      //       color="primary"
+      //       variant="contained"
+      //       style={{textTransform: 'none'}}
+      //       size="small"
+      //     >
+      //       Check
+      //     </Button>
+      //   ),
+      // }}
+    />
   );
 }
