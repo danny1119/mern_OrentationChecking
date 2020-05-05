@@ -1,0 +1,9 @@
+panther_id,first_name,last_name,department,level,campus,degree,email,college,year,check_in
+90098909,Peter,Christ,Computer Science,undergrad,Atlanta,bachelor,peter@gmail.com,GSU,2020,0
+90009089,Danny ,nguyen,CS,Undergrad,Dunwoody,bachelor,da10@gmail.com,GSU,2020,1
+90087658,Hae,Lee,Chemistry,undergrad,Atlanta,bachelor,lee@gmail.com,GSU,2018,0
+90089767,John,Meachel,CS,undergrad,Atlanta,Bachelor,john12@gmail.com,GSU,2019,1
+90089768,An,Nguyen,CS,Graduate,Atlanta,Master,anguyen@gmail.com,GSU,2017,1
+90089769,Michael,White,Physics,Graduate,Newton,bachelor,Mw@gmail.com,GSU,2018,0
+90089770,Alex,Wood,Nursing,Graduate,Clarkston,bachelor,alex123@gmail.com,GSU,2019,0
+90089771,Jimmy,McGill,Engineer,Graduate,Dunwoody,Master,jmc888@gmail.com,GSU,2018,1
