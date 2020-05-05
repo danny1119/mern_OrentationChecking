@@ -82,7 +82,7 @@ const App = () => {
                                                   send
                                                 </Icon> }
                                       onClick={ () => setCount( count + 1 ) }>
-                                Send
+                                Upload
                               </Button>
                               <br />
                               { Array( count ).fill( <AddedElement /> ) }
@@ -209,7 +209,7 @@ const App = () => {
                                 anotherSetCount( anotherCount + 1 )
                                 setCount( count - 1 )
                               } }>
-              Upload
+              Add event
             </Button>
             <br />
             <br />
