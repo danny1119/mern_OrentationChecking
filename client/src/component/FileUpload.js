@@ -37,9 +37,6 @@ const FileUpload = () => {
         filePath
       } );
 
-      console.log(fileName);
-      console.log(filePath);
-
     } catch (err) {
       console.log(err);
     }

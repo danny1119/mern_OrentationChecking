@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React , { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import School from '@material-ui/icons/School';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -9,17 +9,12 @@ import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import useForceUpdate from 'use-force-update';
 import CardEvent from './component/Card';
 import Content from './component/Content';
 import Table from './component/Table';
-import TextField from '@material-ui/core/TextField';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios';
 
-
-import * as d3 from 'd3';
-// import file from './fileupload/test.csv';
 
 const useStyles = makeStyles( (theme) => ({
   icon: {
@@ -51,7 +46,6 @@ const useStyles = makeStyles( (theme) => ({
 const App = () => {
   const classes = useStyles();
   const [name, setName] = useState( '' );
-  let tmp = "";
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -143,7 +137,6 @@ const App = () => {
     ]
   } );
 
-  const forceUpdate = useForceUpdate();
 
   const [showResults, setShowResults] = React.useState( false )
 
@@ -159,26 +152,6 @@ const App = () => {
 
   const [count, setCount] = useState( 1 )
   const [anotherCount, anotherSetCount] = useState( 0 )
-
-  // function changeStatus(id) {
-  //   setState((prev) => ({
-  //      ...prev,
-  //      data: state.data.map(el => (el.panther_id === id ? {
-  //        ...el, first_name : 'asdda'
-  //      } : {...el, check_in: !el.check_in}))
-  //    }))
-  //    forceUpdate();
-  //    toggle();
-  //  }
-
-  // useEffect(async () => {
-  //   const res = await axios.get('http://localhost:5000/api/students')
-  //   console.log(res.data)
-  //    setState((prev) =>  ({
-  //     ...prev,
-  //     data: [...res.data]
-  //    }));
-  // }, []);
 
   return (
   <React.Fragment>
