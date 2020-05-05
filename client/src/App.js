@@ -97,11 +97,15 @@ const App = () => {
  
   const [showResults, setShowResults] = React.useState( false )
   
-  function toggle() {
+  async function toggle() {
+  const res = await axios.get('http://localhost:5000/api/students')
+    console.log(res.data)
+     setState((prev) =>  ({
+      ...prev,
+      data: [...res.data]
+     }));
     setShowResults( wasShowed => !wasShowed );
   }
-
-  
   
  // function changeStatus(id) {
  //   setState((prev) => ({
@@ -114,14 +118,14 @@ const App = () => {
  //    toggle();
  //  }
 
-  useEffect(async () => {
-    const res = await axios.get('http://localhost:5000/api/students')
-    console.log(res.data)
-     setState((prev) =>  ({
-      ...prev,
-      data: [...res.data]
-     }));
-  }, []);
+  // useEffect(async () => {
+  //   const res = await axios.get('http://localhost:5000/api/students')
+  //   console.log(res.data)
+  //    setState((prev) =>  ({
+  //     ...prev,
+  //     data: [...res.data]
+  //    }));
+  // }, []);
 
   console.log(state.data[0])
     
